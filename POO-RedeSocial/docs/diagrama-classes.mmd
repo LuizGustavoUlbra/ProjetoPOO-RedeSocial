@@ -1,0 +1,142 @@
+classDiagram
+    direction LR
+
+    class Interativo {
+        <<interface>>
+        +curtir(Usuario usuario) void
+        +comentar(Comentario comentario) void
+        +getTotalCurtidas() int
+    }
+
+    class Notificacao {
+        <<interface>>
+        +enviar() void
+        +getMensagem() String
+    }
+
+    class Conteudo {
+        <<abstract>>
+        -int id
+        -Usuario autor
+        -String texto
+        -LocalDateTime dataCriacao
+        +getId() int
+        +getAutor() Usuario
+        +getTexto() String
+        +setTexto(String texto) void
+        +getDataCriacao() LocalDateTime
+        +exibir()* String
+    }
+
+    class Usuario {
+        -int id
+        -String email
+        -String senha
+        -Perfil perfil
+        +Usuario(int id, String email, String senha, String nomeExibicao)
+        +getId() int
+        +getEmail() String
+        +setEmail(String email) void
+        +getSenha() String
+        +setSenha(String senha) void
+        +getPerfil() Perfil
+        +atualizarPerfil(String nome, String bio, String foto) void
+    }
+
+    class Perfil {
+        -String nomeExibicao
+        -String biografia
+        -String fotoUrl
+        +getNomeExibicao() String
+        +setNomeExibicao(String nome) void
+        +getBiografia() String
+        +setBiografia(String bio) void
+        +getFotoUrl() String
+        +setFotoUrl(String fotoUrl) void
+    }
+
+    class Postagem {
+        -List~Usuario~ curtidas
+        -List~Comentario~ comentarios
+        +curtir(Usuario usuario) void
+        +comentar(Comentario comentario) void
+        +getTotalCurtidas() int
+        +getComentarios() List~Comentario~
+        +exibir() String
+    }
+
+    class PostagemImagem {
+        -String urlImagem
+        +getUrlImagem() String
+        +setUrlImagem(String urlImagem) void
+        +exibir() String
+    }
+
+    class Comentario {
+        -List~Usuario~ curtidas
+        -List~Comentario~ respostas
+        +curtir(Usuario usuario) void
+        +comentar(Comentario comentario) void
+        +getTotalCurtidas() int
+        +getRespostas() List~Comentario~
+        +exibir() String
+    }
+
+    class RedeSocial {
+        -String nome
+        -List~Usuario~ usuarios
+        -List~Postagem~ postagens
+        +adicionarUsuario(Usuario usuario) void
+        +publicar(Postagem postagem) void
+        +publicar(Usuario autor, String texto) Postagem
+        +publicar(Usuario autor, String texto, String urlImagem) PostagemImagem
+        +getUsuarios() List~Usuario~
+        +getPostagens() List~Postagem~
+    }
+
+    class Mensagem {
+        -Usuario remetente
+        -Usuario destinatario
+        -String conteudo
+        -LocalDateTime dataEnvio
+        +exibir() String
+    }
+
+    class NotificacaoMensagem {
+        -Mensagem mensagem
+        +enviar() void
+        +getMensagem() String
+    }
+
+    class NotificacaoCurtida {
+        -Usuario usuario
+        -Conteudo conteudo
+        +enviar() void
+        +getMensagem() String
+    }
+
+    class RedeSocialService {
+        -RedeSocial redeSocial
+        -int proximoIdUsuario
+        +cadastrarUsuario(String email, String senha, String nome) Usuario
+        +criarPostagemTexto(Usuario autor, String texto) Postagem
+        +criarPostagemImagem(Usuario autor, String texto, String url) PostagemImagem
+    }
+
+    Conteudo <|-- Postagem
+    Postagem <|-- PostagemImagem
+    Conteudo <|-- Comentario
+
+    Interativo <|.. Postagem
+    Interativo <|.. Comentario
+    Notificacao <|.. NotificacaoMensagem
+    Notificacao <|.. NotificacaoCurtida
+
+    Usuario *-- Perfil : composição
+    RedeSocial o-- Usuario : agregação
+    RedeSocial o-- Postagem : agregação
+    Mensagem --> Usuario : remetente/destinatario
+    Postagem --> Comentario : comentários
+    NotificacaoMensagem --> Mensagem : usa
+    NotificacaoCurtida --> Conteudo : usa
+    RedeSocialService --> RedeSocial : usa

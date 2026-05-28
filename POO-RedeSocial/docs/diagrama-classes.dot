@@ -1,0 +1,35 @@
+digraph G {
+  graph [rankdir=LR, bgcolor="white"];
+  node [shape=box, fontname="Arial", fontsize=10];
+  edge [fontname="Arial", fontsize=9];
+
+  Interativo [label="<<interface>>\nInterativo\n+ curtir(usuario)\n+ comentar(comentario)\n+ getTotalCurtidas()"];
+  Notificacao [label="<<interface>>\nNotificacao\n+ enviar()\n+ getMensagem()"];
+  Conteudo [label="<<abstract>>\nConteudo\n- id:int\n- autor:Usuario\n- texto:String\n- dataCriacao:LocalDateTime\n+ exibir():String"];
+  Usuario [label="Usuario\n- id:int\n- email:String\n- senha:String\n- perfil:Perfil\n+ atualizarPerfil()"];
+  Perfil [label="Perfil\n- nomeExibicao:String\n- biografia:String\n- fotoUrl:String"];
+  Postagem [label="Postagem\n- curtidas:List<Usuario>\n- comentarios:List<Comentario>\n+ curtir()\n+ comentar()\n+ exibir()"];
+  PostagemImagem [label="PostagemImagem\n- urlImagem:String\n+ exibir()"];
+  Comentario [label="Comentario\n- curtidas:List<Usuario>\n- respostas:List<Comentario>\n+ curtir()\n+ comentar()\n+ exibir()"];
+  RedeSocial [label="RedeSocial\n- nome:String\n- usuarios:List<Usuario>\n- postagens:List<Postagem>\n+ publicar(Postagem)\n+ publicar(Usuario,String)\n+ publicar(Usuario,String,String)"];
+  Mensagem [label="Mensagem\n- remetente:Usuario\n- destinatario:Usuario\n- conteudo:String\n+ exibir()"];
+  NotificacaoMensagem [label="NotificacaoMensagem\n- mensagem:Mensagem\n+ enviar()\n+ getMensagem()"];
+  NotificacaoCurtida [label="NotificacaoCurtida\n- usuario:Usuario\n- conteudo:Conteudo\n+ enviar()\n+ getMensagem()"];
+  RedeSocialService [label="RedeSocialService\n- redeSocial:RedeSocial\n+ cadastrarUsuario()\n+ criarPostagemTexto()\n+ criarPostagemImagem()"];
+
+  Conteudo -> Postagem [arrowhead=empty, label="herança"];
+  Postagem -> PostagemImagem [arrowhead=empty, label="herança"];
+  Conteudo -> Comentario [arrowhead=empty, label="herança"];
+  Interativo -> Postagem [arrowhead=empty, style=dashed, label="implementa"];
+  Interativo -> Comentario [arrowhead=empty, style=dashed, label="implementa"];
+  Notificacao -> NotificacaoMensagem [arrowhead=empty, style=dashed, label="implementa"];
+  Notificacao -> NotificacaoCurtida [arrowhead=empty, style=dashed, label="implementa"];
+  Usuario -> Perfil [arrowhead=diamond, label="composição"];
+  RedeSocial -> Usuario [arrowhead=odiamond, label="agregação"];
+  RedeSocial -> Postagem [arrowhead=odiamond, label="agregação"];
+  Mensagem -> Usuario [label="associação"];
+  Postagem -> Comentario [label="associação"];
+  NotificacaoMensagem -> Mensagem [label="usa"];
+  NotificacaoCurtida -> Conteudo [label="usa"];
+  RedeSocialService -> RedeSocial [label="usa"];
+}

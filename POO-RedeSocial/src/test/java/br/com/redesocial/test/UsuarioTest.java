@@ -1,3 +1,9 @@
+package br.com.redesocial.test;
+
+import br.com.redesocial.model.Usuario;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
 class UsuarioTest {
     @Test
     void deveCriarUsuarioComPerfil() {

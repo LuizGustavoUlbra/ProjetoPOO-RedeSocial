@@ -1,3 +1,13 @@
+package br.com.redesocial.test;
+
+import br.com.redesocial.model.Postagem;
+import br.com.redesocial.model.PostagemImagem;
+import br.com.redesocial.model.RedeSocial;
+import br.com.redesocial.model.Usuario;
+import br.com.redesocial.service.RedeSocialService;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
 class RedeSocialServiceTest {
     @Test
     void deveCadastrarUsuarioNaRedeSocial() {

@@ -1,3 +1,14 @@
+package br.com.redesocial.test;
+
+import br.com.redesocial.interfaces.Notificacao;
+import br.com.redesocial.model.Mensagem;
+import br.com.redesocial.model.NotificacaoCurtida;
+import br.com.redesocial.model.NotificacaoMensagem;
+import br.com.redesocial.model.Postagem;
+import br.com.redesocial.model.Usuario;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
 class NotificacaoTest {
     @Test
     void deveCriarNotificacaoDeMensagem() {

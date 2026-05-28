@@ -1,3 +1,11 @@
+package br.com.redesocial.test;
+
+import br.com.redesocial.model.Postagem;
+import br.com.redesocial.model.PostagemImagem;
+import br.com.redesocial.model.Usuario;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
 class PostagemImagemTest {
     @Test
     void deveSerUmaPostagem() {
