@@ -1,0 +1,14 @@
+br\com\redesocial\model\Mensagem.class
+br\com\redesocial\service\RedeSocialService.class
+br\com\redesocial\view\Main.class
+br\com\redesocial\model\Comentario.class
+br\com\redesocial\model\Postagem.class
+br\com\redesocial\interfaces\Notificacao.class
+br\com\redesocial\model\NotificacaoMensagem.class
+br\com\redesocial\model\Perfil.class
+br\com\redesocial\model\RedeSocial.class
+br\com\redesocial\model\NotificacaoCurtida.class
+br\com\redesocial\model\Conteudo.class
+br\com\redesocial\model\PostagemImagem.class
+br\com\redesocial\model\Usuario.class
+br\com\redesocial\interfaces\Interativo.class

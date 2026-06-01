@@ -1,0 +1,8 @@
+br\com\redesocial\test\RedeSocialServiceTest.class
+br\com\redesocial\test\ComentarioTest.class
+br\com\redesocial\test\NotificacaoTest.class
+br\com\redesocial\test\PostagemImagemTest.class
+br\com\redesocial\test\UsuarioTest.class
+br\com\redesocial\test\MensagemTest.class
+br\com\redesocial\test\PostagemTest.class
+br\com\redesocial\test\RedeSocialTest.class
